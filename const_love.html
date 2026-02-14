@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Const Love</title>
+    <link rel="stylesheet" href="css/love.css">
+    <link href='https://fonts.googleapis.com' rel='stylesheet'>
+</head>
+<body>
+    <section id="title">
+        <div class="title-text">
+            <img class="top-heart" src="../images/heart.png" alt="heart">
+            <h1>Const Love</h1>
+            <h3>For the most amazing girlfriend in the world</h3>
+            <img class="bottom-heart" src="../images/heart.png" alt="heart">
+        </div>    
+    </section>
+
+    <section id="paragraph">
+        <div class = "paragraph-text">
+            <h3>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur metus fermentum, aliquam ligula vel, porta eros. Donec efficitur nisi lacus, eu gravida ipsum cursus non. Praesent ultrices sollicitudin ligula, porttitor rutrum leo dictum vel. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Integer sit amet est vitae nisl ullamcorper semper. Vestibulum vel ligula eu odio laoreet hendrerit. Nullam sed nisi magna. Donec vel dolor blandit, bibendum sapien et, vulputate magna. Praesent at urna lacus. Etiam vehicula sapien lorem, ac fermentum nibh scelerisque at. Ut vehicula faucibus purus eu aliquet. Ut convallis sit amet tortor eu venenatis. </h3>
+        </div>
+    </section>
+    <div>
+        <canvas id="canvas"></canvas>
+        <div id="status">Loading...</div>
+    </div>
+    <script>
+        var Module = {
+            canvas: document.getElementById('canvas'),
+            print: function(text) {
+                console.log(text);
+            },
+            printErr: function(text) {
+                console.error(text);
+            },
+            onRuntimeInitialized: function() {
+                document.getElementById('status').textContent = '';
+            }
+        };
+    </script>
+    <script src="index.js"></script>
+</body>
+</html>

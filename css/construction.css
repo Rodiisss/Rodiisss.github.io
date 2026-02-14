@@ -1,0 +1,18 @@
+body {
+  margin: 0;
+  padding: 0;
+  display: grid;
+  justify-content: center;
+  min-height: 100vh;
+  text-align: center;
+  overflow: auto;
+  background-image: url("../images/construction.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-color: #ea7b7b; /* fallback color */
+  font-family: "roboto mono", monospace;
+  font-weight: bold;
+  color: white;
+
+}
