@@ -23,5 +23,5 @@ void main()
     
     //Sample texture and apply lighting
     vec4 texColor = texture(texture1, TexCoord);
-    FragColor = vec4(texColor.rgb * lighting, texColor.a);
+    FragColor = vec4(texColor.rgb * lighting, texColor.a) * vec4(1.0f, 0.2f, 0.2f, 1.0f);
 }

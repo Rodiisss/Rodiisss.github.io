@@ -36,16 +36,16 @@ size_t index_count;
 
 unsigned int VAO, VBO, texture;
 vec3 heartPositions[] = {
-    { 0.0f,  0.0f,  0.0f},
-    { 2.0f,  5.0f, -15.0f}, 
-    {-1.5f, -2.2f, -2.5f}, 
-    {-3.8f, -2.0f, -12.3f},  
-    { 2.4f, -0.4f, -3.5f}, 
-    {-1.7f,  3.0f, -7.5f}, 
-    { 1.3f, -2.0f, -2.5f}, 
-    { 1.5f,  2.0f, -2.5f},
-    { 1.5f,  0.2f, -1.5f},
-    {-1.3f,  1.0f, -1.5f}
+    { 0.0f * 9,  0.0f * 9,  0.0f * 5},
+    { 2.0f * 9,  5.0f * 9, -14.0f * 5}, 
+    {-1.5f * 9, -2.2f * 9, -2.5f * 5}, 
+    {-0.8f * 9, -5.0f * 9, -12.3f * 5},  
+    { 2.4f * 9, -0.4f * 9, -3.5f * 5}, 
+    {-1.7f * 9,  3.0f * 9, -7.5f * 5}, 
+    { 1.3f * 9, -2.0f * 9, -2.5f * 5}, 
+    { 1.5f * 9,  2.0f * 9, -2.5f * 5},
+    { -2.5f * 9,  -0.5f * 9, -2.5f * 5},
+    {-1.3f * 13,  1.0f * 9, -1.5f * 5}
 };
 
 
@@ -65,24 +65,30 @@ void main_loop() {
     float timeValue = glfwGetTime(); 
     
 
-    glm_translate(view, (vec3){0.0f, -10.0f, -20.0f});
-    glm_perspective(glm_rad(90.0f), 800.0f/ 600.0f, 0.1f, 100.0f, projection);
+    glm_translate(view, (vec3){0.0f, -7.0f, -20.0f});
+    glm_perspective(glm_rad(80.0f), 800.0f/ 600.0f, 0.1f, 100.0f, projection);
 
 
     setMat4(&myShader, "view", view);
     setMat4(&myShader, "projection", projection);
 
     mat4 scale = GLM_MAT4_IDENTITY_INIT;
-    glm_scale(scale, (vec3){1.0f, 1.0f, 1.0f});
+    glm_scale(scale, (vec3){0.6f, 0.6f, 0.6f});
 
-    mat4 model = GLM_MAT4_IDENTITY_INIT;
-    glm_rotate(model, glm_rad(-90.0f), (vec3){1.0f, 0.0f, 0.0f});
-    glm_rotate(model, glm_rad(45.0f) * timeValue, (vec3){0.0f, 0.0f, 1.0f});
-    setMat4(&myShader, "model", model); 
-    setMat4(&myShader, "scale", scale);
+    for (unsigned int i = 0; i < 10; i++) {
+        mat4 model = GLM_MAT4_IDENTITY_INIT;
 
+
+        glm_translate(model, heartPositions[i]);
+        glm_rotate(model, glm_rad(-90.0f), (vec3){1.0f, 0.0f, 0.0f});
+        glm_rotate(model, glm_rad(45.0f) * timeValue * (i*0.5f) , (vec3){0.0f, 0.0f, 1.0f});
+
+        setMat4(&myShader, "model", model); 
+        setMat4(&myShader, "scale", scale);
+        glDrawArrays(GL_TRIANGLES, 0, vertex_count);
+        printf("Rendered heart number %d\n", i);
+    }
     // glDrawArrays(GL_TRIANGLES, 0, 36);
-    glDrawArrays(GL_TRIANGLES, 0, vertex_count);
 
 
 #ifndef __EMSCRIPTEN__
